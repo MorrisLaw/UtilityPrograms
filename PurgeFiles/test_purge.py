@@ -36,13 +36,10 @@ class TestPurge(unittest.TestCase):
         purge.File.delete_file(self.test_dir, test_file)
         self.assertTrue(self.test_dir, not os.path.exists(test_file), None)
 
-    def test_delete_file(self):
-        # Create a file in the temp directory.
-        test_file = open(os.path.join(self.test_dir, 'test.txt'), 'test file')
-        # Write some data to the file.
-        test_file.write('May the force be with you.')
-        # Verify that the file is deleted after using delete_file method.
-        purge.File.delete_file(self.test_dir, test_file)
+    def test_delete_dir(self):
+        # Verify that the directory is deleted after using delete_dir method.
+        purge.Directory.delete_dir(self.test_dir, os.path.realpath(self.test_dir))
+        self.assertTrue(self.test_dir, not os.path.exists(self.test_dir), None)
 
 if __name__ == '__main__':
     unittest.main()
