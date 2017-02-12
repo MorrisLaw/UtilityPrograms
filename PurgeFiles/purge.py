@@ -7,6 +7,7 @@
 # === Author:
 # Jeremy Morris
 import os
+import sys
 
 
 class UserInput(object):
@@ -14,32 +15,32 @@ class UserInput(object):
 
         Attributes:
             user_input: This is what the user provides in the form of either a file or directory path.
+            tries: The number of attempts to get a valid path before the program exits.
+            user_path: The valid file path given by the user.
     """
+    user_input = ''
+    tries = 0
+    user_path = ''
 
-    def __init__(self, user_input, user_file, user_dir, user_path, path_type, tries):
+    def __init__(self, user_input, tries, user_path):
         self.user_input = user_input
-        self.user_file = user_file
-        self.user_dir = user_dir
         self.tries = tries
-        # self.user_path  = user_path
-        # self.path_type  = path_type
+        self.userPath = ''
 
     def get_path(self):
         # Number of attempts before program exits, due to invalid input.
         tries = 3
         user_input = input('Please provide a file or directory that you\'d like deleted.' + '\n')
-
+        # Attempt to get a valid path until attempts reach the trie(attempt) limit.
         while tries > -1:
             if tries == -1:
                 print('You\'ve failed to provide a valid file path. Exiting the program...')
                 break
             if os.path.exists(user_input) and os.path.isfile(user_input):
-                print('You\'ve provided a valid file path')
-                print('Exiting...')
+                print('You\'ve provided a valid file path...')
                 break
             elif os.path.exists(user_input) and os.path.isdir:
-                print('You\'ve provided a valid directory')
-                print('Exiting...')
+                print('You\'ve provided a valid directory...')
                 break
             elif not os.path.exists(user_input) and tries == 0:
                 print(user_input + ' is not a valid file path.' + '\n'
@@ -52,39 +53,15 @@ class UserInput(object):
                                    + '\n' + 'You have {0} attempt(s) remaining.'.format(tries) + '\n')
                 tries -= 1
 
+        UserInput.set_user_path(self, user_input)
         return user_input
 
-    # Inform user of path type, then set to appropriate path type.
-    def file_or_dir(self, user_input):
-        if not os.path.exists(user_input):
-            return False
-        elif os.path.isfile(user_input):
-            print('You\'ve provided a valid file path')
-            UserInput.set_file(self, user_input)
-            return True
-        else:
-            print('You\'ve provided a valid directory')
-            UserInput.set_dir(self, user_input)
-            return True
+    def set_user_path(self, user_path):
+        self.user_path = user_path
 
-    def set_file(self, user_file, user_input):
-        self.user_file = user_input
+    def get_user_path(self, user_path):
+        return self.user_path
 
-    def get_file(self, user_file):
-        return user_file
-
-    def set_dir(self, user_dir, user_input):
-        self.user_dir = user_input
-
-    def get_dir(self, user_dir):
-        return user_dir
-
-    # @property
-    # def path_type(self, user_path, user_file, user_dir):
-    #     if os.path.isfile(UserInput.file_or_dir()):
-    #         self.user_path = user_file
-    #     else:
-    #         self.user_path = user_dir
 
 class File(object):
     """ A file object has the following properties:
@@ -93,12 +70,39 @@ class File(object):
         name: The name of the file without the directory path.
         type: The file type, providedby parsing the extension.
     """
-    def __init__(self, name, type):
+    name = ''
+    type = ''
+    decision = ''
+    user_path = ''
+
+    def __init__(self, name, type, decision, user_path):
         self.name = name
         self.type = type
+        self.decision = decision
+        self.user_path = user_path
 
-    def delete_file(self):
-        print('File YAY')
+    def delete_file(self, user_path):
+        # Verify the deletion, by asking the user if they're sure.
+        decision = input('\n' + 'Would you like to delete this file ? (Y/n)' + '\n')
+        # If yes, ask again twice. Just to be sure.
+        if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES':
+            decision = input('Are you sure you want to delete this file and all of it\'s contents ? (Y/n)' + '\n')
+            if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES':
+                decision = input('It\'s not coming back... (Fine with me/ NO, DON\'T DO IT)' + '\n')
+                if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES' or decision == 'Fine ' \
+                                                                                                               'with me':
+                    # Obliterates the file.
+                    os.remove(UserInput.get_user_path(self, user_path))
+                    print('This file is now gone!')
+                else:
+                    print('Exiting program, your file is safe...')
+                    sys.exit(None)
+            else:
+                print('Exiting program, your file is safe...')
+                sys.exit(None)
+        else:
+            print('Exiting program, your file is safe...')
+            sys.exit(None)
 
 
 class Directory(object):
@@ -107,14 +111,49 @@ class Directory(object):
     Attributes:
         name: The name of the directory, without the directory path.
         contents: A list of what is contained in the directory.
+        decision: The decision as to whether or not the given path will be deleted.
+        path_value: The full file path of the user_input.
     """
-    def __init__(self, name, contents):
+    name = ''
+    contents = []
+    decision = ''
+    user_path = ''
+
+    def __init__(self, name, contents, decision, user_path):
         self.name = name
         self.contents = contents
+        self.decision = decision
+        self.user_path = user_path
 
-    def delete_dir(self):
-        print('Directory YAY')
+    def delete_dir(self, user_path):
+        # Verify the deletion, by asking the user if they're sure.
+        decision = input('\n' + 'Would you like to delete this directory ? (Y/n)' + '\n')
+        # If yes, ask again twice. Just to be sure.
+        if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES':
+            decision = input('Are you sure you want to delete this directory and all of it\'s contents ? (Y/n)' + '\n')
+            if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES':
+                decision = input('It\'s not coming back... (Fine with me/ NO, DON\'T DO IT)' + '\n')
+                if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES' or decision == 'Fine ' \
+                                                                                                               'with me':
+                    # Obliterates the directory.
+                    os.rmdir(os.path.realpath(UserInput.get_user_path(self, user_path)))
+                    print('This Directory and all of it\'s contents are now gone!')
+                else:
+                    print('Exiting program, your directory is safe...')
+                    sys.exit(None)
+            else:
+                print('Exiting program, your directory is safe...')
+                sys.exit(None)
+        else:
+            print('Exiting program, your directory is safe...')
+            sys.exit(None)
 
 
+# Instance of UserInput object.
 ui = UserInput
-ui.get_path(ui)
+ui_path_value = ui.get_path(ui)
+if ui_path_value != '':
+    if os.path.isfile(ui_path_value):
+        File.delete_file(ui, ui_path_value)
+    else:
+        Directory.delete_dir(ui, ui_path_value)
