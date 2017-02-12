@@ -15,56 +15,50 @@ class UserInput(object):
         Attributes:
             user_input: This is what the user provides in the form of either a file or directory path.
     """
-    def __init__(self, user_input, user_file, user_dir, user_path, path_type):
+
+    def __init__(self, user_input, user_file, user_dir, user_path, path_type, tries):
         self.user_input = user_input
-        self.user_file  = user_file
-        self.user_dir   = user_dir
+        self.user_file = user_file
+        self.user_dir = user_dir
+        self.tries = tries
         # self.user_path  = user_path
         # self.path_type  = path_type
 
-    def get_path(self, user_file, user_dir, user_input):
+    def get_path(self):
         # Number of attempts before program exits, due to invalid input.
         tries = 3
+        user_input = input('Please provide a file or directory that you\'d like deleted.' + '\n')
 
-        user_input = input("Please provide the path to a file or directory that you wish to be deleted." + '\n')
+        while tries > -1:
+            if tries == -1:
+                print('You\'ve failed to provide a valid file path. Exiting the program...')
+                break
+            if os.path.exists(user_input) and os.path.isfile(user_input):
+                print('You\'ve provided a valid file path')
+                print('Exiting...')
+                break
+            elif os.path.exists(user_input) and os.path.isdir:
+                print('You\'ve provided a valid directory')
+                print('Exiting...')
+                break
+            elif not os.path.exists(user_input) and tries == 0:
+                print(user_input + ' is not a valid file path.' + '\n'
+                      + 'You\'ve failed to provide a valid file path.'
+                      + 'Exiting the program...')
+                user_input = ''
+                break
+            elif not os.path.exists(user_input):
+                user_input = input(user_input + ' is not a valid file path. Please try again.'
+                                   + '\n' + 'You have {0} attempt(s) remaining.'.format(tries) + '\n')
+                tries -= 1
 
-        # If it is a file or directory it will call the appropriate method to delete file.
-        if UserInput.file_or_dir(self, user_input):
-            if os.path.isfile(UserInput.get_file(user_input)):
-                File.delete_file(user_input)
-            else:
-                Directory.delete_file(user_input)
-        # User input validation. Will exit if user fails to input valid path after 3 tries.
-        else:
-            while tries > 0:
-                if os.path.isfile(user_input):
-                    print("Congratulations, you've provided a valid file path")
-                    break
-                elif os.path.exists(user_input) and os.path.isdir:
-                    print("Congratulations, you've provided a valid directory")
-                    break
-                if not os.path.exists(user_input):
-                    print(user_input + ' is not a valid file path. Try again.')
-                else:
-                    print('There\'s {0} attempt(s) remaining.'.format(tries))
-                    break
-
-                user_input = input('Please provide the path to a file or directory that you wish to be deleted.' + '\n')
-
-                if os.path.isfile(user_input):
-                    print('Congratulations, you\'ve provided a valid file path')
-                elif os.path.exists(user_input) and os.path.isdir:
-                    print('Congratulations, you\'ve provided a valid directory')
-                else:
-                    print(user_input + ' is not a valid file path.')
-                    print('Exiting...')
+        return user_input
 
     # Inform user of path type, then set to appropriate path type.
-    def file_or_dir(self, user_input, user_path):
+    def file_or_dir(self, user_input):
         if not os.path.exists(user_input):
-            print(user_input + ' is not a valid file path.')
             return False
-        elif os.path.isfile(user_path):
+        elif os.path.isfile(user_input):
             print('You\'ve provided a valid file path')
             UserInput.set_file(self, user_input)
             return True
@@ -104,44 +98,7 @@ class File(object):
         self.type = type
 
     def delete_file(self):
-        # The number of attempts before the program exits, for invalid input.
-        tries = 3
-        # Input(file/directory) validation.
-        user_input = input("Please provide the path to a file or directory that you wish to be deleted." + '\n')
-
-        if os.path.isfile(user_input):
-            print("You've provided a valid file path. Are you sure you'd like to delete this? (Y/n)")
-
-        elif os.path.exists(user_input) and os.path.isdir:
-            print("Congratulations, you've provided a valid directory")
-
-        elif not os.path.exists(user_input):
-            while tries > 0:
-                tries -= 1
-                if os.path.isfile(user_input):
-                    print("Congratulations, you've provided a valid file path")
-                    break
-                elif os.path.exists(userInput) and os.path.isdir:
-                    print("Congratulations, you've provided a valid directory")
-                    break
-                if tries != 0:
-                    print(userInput + " is not a valid file path. Try again.")
-                else:
-                    print("There are {0} attempts remaining.".format(tries))
-                    break
-                if tries == 1:
-                    print("There is {0} attempt remaining.".format(tries))
-                elif tries == 0:
-                    print("There are no attempt remaining.")
-                userInput = input("Please provide the path to a file or directory that you wish to be deleted." + '\n')
-            if os.path.isfile(user_input):
-                print("Congratulations, you've provided a valid file path")
-            elif os.path.exists(user_input) and os.path.isdir:
-                print("Congratulations, you've provided a valid directory")
-
-        else:
-            print(user_input + " is not a valid file path.")
-            print("Exiting...")
+        print('File YAY')
 
 
 class Directory(object):
@@ -155,43 +112,9 @@ class Directory(object):
         self.name = name
         self.contents = contents
 
-    # def delete_dir(self):
-    #     # The number of attempts before the program exits, for invalid input.
-    #     tries = 3
-    #     # Input(file/directory) validation.
-    #     userInput = input("Please provide the path to a file or directory that you wish to be deleted." + '\n')
-    #
-    #     if os.path.isfile(userInput):
-    #         print("You've provided a valid file path. Are you sure you'd like to delete this? (Y/n)")
-    #
-    #     elif os.path.exists(userInput) and os.path.isdir:
-    #         print("Congratulations, you've provided a valid directory")
-    #
-    #     elif not os.path.exists(userInput):
-    #         while tries > 0:
-    #             tries -= 1
-    #             if os.path.isfile(userInput):
-    #                 print("Congratulations, you've provided a valid file path")
-    #                 break
-    #             elif os.path.exists(userInput) and os.path.isdir:
-    #                 print("Congratulations, you've provided a valid directory")
-    #                 break
-    #             if tries != 0:
-    #                 print(userInput + " is not a valid file path. Try again.")
-    #             else:
-    #                 print("There are {0} attempts remaining.".format(tries))
-    #                 break
-    #             if tries == 1:
-    #                 print("There is {0} attempt remaining.".format(tries))
-    #             elif tries == 0:
-    #                 print("There are no attempt remaining.")
-    #             userInput = input(
-    #                 "Please provide the path to a file or directory that you wish to be deleted." + '\n')
-    #         if os.path.isfile(userInput):
-    #             print("Congratulations, you've provided a valid file path")
-    #         elif os.path.exists(userInput) and os.path.isdir:
-    #             print("Congratulations, you've provided a valid directory")
-    #
-    #     else:
-    #         print(userInput + " is not a valid file path.")
-    #         print("Exiting...")
+    def delete_dir(self):
+        print('Directory YAY')
+
+
+ui = UserInput
+ui.get_path(ui)
