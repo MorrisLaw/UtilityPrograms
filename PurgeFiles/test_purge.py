@@ -6,30 +6,43 @@
 #
 # === Author:
 # Jeremy Morris
+import shutil
+import tempfile
 import unittest
 import os
-import PurgeFiles.purge
+from PurgeFiles import purge
 
-class TestUserInput(unittest.TestCase):
+
+class TestPurge(unittest.TestCase):
     """
     Tests that when a user inputs a valid file or directory; the program
-    identifies this as valid. When input is incorrect, the input
+    identifies it as valid. When input is incorrect, the input
     is identified as invalid.
     """
-    # def test_get_path_true(self):
-    #     self.assertTrue(True, os.path.isfile('/home/Desktop/'))
-    #
-    # def test_get_path_false(self):
-    #     self.assertFalse(False, os.path.isfile('invalid path'))
-    # def test_get_path(self, test_input):
-    #     self.test_input = '/home/Desktop/'
-    #
-    # def test_is_valid_true(self):
-    #     user_input = '/home/Desktop'
-    #     self.assertTrue(True, PurgeFiles.purge.UserInput.is_valid(user_input))
-    #
-    # def test_is_valid_false(self):
-    #     self.assertFalse(False, PurgeFiles.purge.UserInput.is_valid('invalid path'))
+    def setUp(self):
+        # Create a temporary directory.
+        self.test_dir = tempfile.mkdtemp()
+
+    def tearDown(self):
+        # Remove the temporary directory after the test.
+        shutil.rmtree(self.test_dir)
+
+    def test_delete_file(self):
+        # Create a file in the temp directory.
+        test_file = open(os.path.join(self.test_dir, 'test.txt'), 'test file')
+        # Write some data to the file.
+        test_file.write('May the force be with you.')
+        # Verify that the file is deleted after using delete_file method.
+        purge.File.delete_file(self.test_dir, test_file)
+        self.assertTrue(self.test_dir, not os.path.exists(test_file), None)
+
+    def test_delete_file(self):
+        # Create a file in the temp directory.
+        test_file = open(os.path.join(self.test_dir, 'test.txt'), 'test file')
+        # Write some data to the file.
+        test_file.write('May the force be with you.')
+        # Verify that the file is deleted after using delete_file method.
+        purge.File.delete_file(self.test_dir, test_file)
 
 if __name__ == '__main__':
     unittest.main()
