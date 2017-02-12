@@ -45,7 +45,7 @@ class UserInput(object):
             elif not os.path.exists(user_input) and tries == 0:
                 print(user_input + ' is not a valid file path.' + '\n'
                       + 'You\'ve failed to provide a valid file path.'
-                      + 'Exiting the program...')
+                      + ' Exiting the program...')
                 user_input = ''
                 break
             elif not os.path.exists(user_input):
