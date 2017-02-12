@@ -70,14 +70,14 @@ class File(object):
         name: The name of the file without the directory path.
         type: The file type, providedby parsing the extension.
     """
-    name = ''
-    type = ''
+    # name = ''
+    # type = ''
     decision = ''
     user_path = ''
 
     def __init__(self, name, type, decision, user_path):
-        self.name = name
-        self.type = type
+        # self.name = name
+        # self.type = type
         self.decision = decision
         self.user_path = user_path
 
@@ -90,7 +90,8 @@ class File(object):
             if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES':
                 decision = input('It\'s not coming back... (Fine with me/ NO, DON\'T DO IT)' + '\n')
                 if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES' or decision == 'Fine ' \
-                                                                                                               'with me':
+                                                                                                               'with ' \
+                                                                                                               'me':
                     # Obliterates the file.
                     os.remove(UserInput.get_user_path(self, user_path))
                     print('This file is now gone!')
@@ -104,6 +105,13 @@ class File(object):
             print('Exiting program, your file is safe...')
             sys.exit(None)
 
+    @property
+    def set_file_name(self, name, user_path):
+        self.name = os.path.basename(UserInput.get_user_path(self, name, user_path))
+
+    def get_file_name(self, name):
+        return self.name
+
 
 class Directory(object):
     """ A directory object has the following properties:
@@ -114,14 +122,14 @@ class Directory(object):
         decision: The decision as to whether or not the given path will be deleted.
         path_value: The full file path of the user_input.
     """
-    name = ''
-    contents = []
+    # name = ''
+    # contents = []
     decision = ''
     user_path = ''
 
     def __init__(self, name, contents, decision, user_path):
-        self.name = name
-        self.contents = contents
+        # self.name = name
+        # self.contents = contents
         self.decision = decision
         self.user_path = user_path
 
@@ -134,7 +142,8 @@ class Directory(object):
             if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES':
                 decision = input('It\'s not coming back... (Fine with me/ NO, DON\'T DO IT)' + '\n')
                 if decision == 'y' or decision == 'yes' or decision == 'Y' or decision == 'YES' or decision == 'Fine ' \
-                                                                                                               'with me':
+                                                                                                               'with ' \
+                                                                                                               'me':
                     # Obliterates the directory.
                     os.rmdir(os.path.realpath(UserInput.get_user_path(self, user_path)))
                     print('This Directory and all of it\'s contents are now gone!')

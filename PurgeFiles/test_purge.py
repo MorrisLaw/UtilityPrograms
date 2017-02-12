@@ -2,7 +2,7 @@
 # Tests the purge.py file.
 #
 # === File:
-# testPurge.py
+# test_purge.py
 #
 # === Author:
 # Jeremy Morris
