@@ -1,11 +1,3 @@
-# === Purpose:
-# Tests the File class in the purge.py file.
-#
-# === File:
-# test_file.py
-#
-# === Author:
-# Jeremy Morris
 from unittest import TestCase
 
 

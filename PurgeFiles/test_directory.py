@@ -1,11 +1,3 @@
-# === Purpose:
-# Tests the Directory class in the purge.py file.
-#
-# === File:
-# purge.py
-#
-# === Author:
-# Jeremy Morris
 from unittest import TestCase
 
 
