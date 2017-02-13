@@ -25,7 +25,7 @@ class UserInput(object):
     def __init__(self, user_input, tries, user_path):
         self.user_input = user_input
         self.tries = tries
-        self.userPath = ''
+        self.user_path = user_path
 
     def get_path(self):
         # Number of attempts before program exits, due to invalid input.
@@ -59,7 +59,7 @@ class UserInput(object):
     def set_user_path(self, user_path):
         self.user_path = user_path
 
-    def get_user_path(self, user_path):
+    def get_user_path(self):
         return self.user_path
 
 
