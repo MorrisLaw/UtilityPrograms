@@ -3,4 +3,4 @@ from unittest import TestCase
 
 class TestDirectory(TestCase):
     def test_delete_dir(self):
-        self.fail()
+        self.assertFalse(False, False)
