@@ -1,18 +1,15 @@
 from unittest import TestCase
-from PurgeFiles import purge
 
 
 class TestUserInput(TestCase):
-    def test_get_path(self):
-        test_purge = purge.Directory()
+    def setUp(self):
+        self.assertTrue(False, False)
 
-        # try {
-        #     # result =
-        #     # self.assertTrue()
-        # }
+    def test_get_path(self):
+        self.assertTrue(False, False)
 
     def test_set_user_path(self):
-        self.assertFalse(False, False)
+        self.assertTrue(false, false)
 
     def test_get_user_path(self):
-        self.assertFalse(False, False)
+        self.assertTrue(False, False)
