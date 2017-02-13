@@ -11,6 +11,10 @@
 ##### Step 3 - While in terminal, run the command 'python3 purge.py' to start the script. 
   * This uses the python 3 interpreter, so make sure you have python 3 installed. You can get it from https://www.python.org/downloads/.
   
-  
+
+#### OVERALL DESIGN OF PROGRAM
+![design-diagram-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/Images/DesignDiagram.png)
+
+
 #### EXAMPLES OF USING purge.py
 
