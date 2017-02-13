@@ -70,13 +70,13 @@ class File(object):
         name: The name of the file without the directory path.
         type: The file type, providedby parsing the extension.
     """
-    # name = ''
+    name = ''
     # type = ''
     decision = ''
     user_path = ''
 
     def __init__(self, name, type, decision, user_path):
-        # self.name = name
+        self.name = name
         # self.type = type
         self.decision = decision
         self.user_path = user_path
@@ -120,7 +120,7 @@ class Directory(object):
         name: The name of the directory, without the directory path.
         contents: A list of what is contained in the directory.
         decision: The decision as to whether or not the given path will be deleted.
-        path_value: The full file path of the user_input.
+        user_path: The full file path of the user_input.
     """
     # name = ''
     # contents = []
