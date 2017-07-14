@@ -26,7 +26,7 @@
 <img src="media/NotDeletingFile.png" alt="hi" class="inline"/>
 
 ##### This is what happens when an invalid path is given.
-<img src="media/media/InvalidPath.png" alt="hi" class="inline"/>
+<img src="media/InvalidPath.png" alt="hi" class="inline"/>
 
 #### SCREENSHOT OF DEMO --> purge.py on Linux Ubuntu 14.04
 <img src="media/FullProcessPurge.png" alt="hi" class="inline"/>
