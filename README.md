@@ -17,8 +17,7 @@
 #### There are a lot of inputs that this program allows at certain stages of the deletion process. At the beginning and throughout most of the script, you can continue by responding either yes(y, Y, yes, Yes) or any other keyboard input that's not those responses, to cancel. At the last step if hitting yes all the way through, it will ask you one last time if you want to delete the file or directory. At this point you can still respond with the normal yes or no OR you can respond with Fine with me (for yes) or as stated before, any other keyboard input that's not those responses, to cancel.
 
 ##### Successful deletion of directory will look similar to this exchange of input and output, in the terminal.
-![delete-directory-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/DeletingDirectory.png)
-![https://github.com/MorrisLaw/UtilityPrograms/tree/master/media](images/table%201-1.png?raw=true)
+![delete-directory-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/DeletingDirectory.PNG)
 
 ##### Successful deletion of a file will look similar to this exchange of input and ouput, in the terminal.
 ![delete-file-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/DeletingFile.png)
