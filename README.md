@@ -32,4 +32,4 @@
 <img src="media/FullProcessPurge.png" alt="hi" class="inline"/>
 
 #### OVERALL DESIGN OF PROGRAM
-![](https://github.com/MorrisLaw/UtilityPrograms/blob/master/media/DesignDiagram.png)
+<img src="media/DesignDiagram.png" alt="hi" class="inline"/>
