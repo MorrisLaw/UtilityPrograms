@@ -17,19 +17,19 @@
 #### There are a lot of inputs that this program allows at certain stages of the deletion process. At the beginning and throughout most of the script, you can continue by responding either yes(y, Y, yes, Yes) or any other keyboard input that's not those responses, to cancel. At the last step if hitting yes all the way through, it will ask you one last time if you want to delete the file or directory. At this point you can still respond with the normal yes or no OR you can respond with Fine with me (for yes) or as stated before, any other keyboard input that's not those responses, to cancel.
 
 ##### Successful deletion of directory will look similar to this exchange of input and output, in the terminal.
-![delete-directory-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/DeletingDirectory.png)
+<img src="media/DeletingDirectory.png" alt="hi" class="inline"/>
 
 ##### Successful deletion of a file will look similar to this exchange of input and ouput, in the terminal.
-![delete-file-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/DeletingFile.png)
+<img src="media/DeletingFile.png" alt="hi" class="inline"/>
 
 ##### Successful cancelling of a deletion will output a message similar to this (will say directory instead of file if cancelling the deletion of a directory.)
-![delete-file-cancel-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/NotDeletingFile.png)
+<img src="media/NotDeletingFile.png" alt="hi" class="inline"/>
 
 ##### This is what happens when an invalid path is given.
-![invalid-path-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/InvalidPath.png)
+<img src="media/InvalidPath.png" alt="hi" class="inline"/>
 
 #### SCREENSHOT OF DEMO --> purge.py on Linux Ubuntu 14.04
-![demo-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/FullProcessPurge.png)
+<img src="media/FullProcessPurge.png" alt="hi" class="inline"/>
 
 #### OVERALL DESIGN OF PROGRAM
-![design-diagram-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/DesignDiagram.png)
+<img src="media/DesignDiagram.png" alt="hi" class="inline"/>
