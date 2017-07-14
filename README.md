@@ -18,6 +18,7 @@
 
 ##### Successful deletion of directory will look similar to this exchange of input and output, in the terminal.
 ![delete-directory-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/DeletingDirectory.png)
+![https://github.com/MorrisLaw/UtilityPrograms/tree/master/media](images/table%201-1.png?raw=true)
 
 ##### Successful deletion of a file will look similar to this exchange of input and ouput, in the terminal.
 ![delete-file-image](https://github.com/MorrisLaw/UtilityPrograms/blob/master/PurgeImages/DeletingFile.png)
