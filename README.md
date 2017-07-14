@@ -18,7 +18,7 @@
 
 ##### Successful deletion of directory will look similar to this exchange of input and output, in the terminal.
 ![](https://github.com/MorrisLaw/UtilityPrograms/blob/master/media/DeletingDirectory.png)
-
+<img src="media/DeletingDirectory.png" alt="hi" class="inline"/>
 ##### Successful deletion of a file will look similar to this exchange of input and ouput, in the terminal.
 ![](https://github.com/MorrisLaw/UtilityPrograms/blob/master/media/DeletingFile.png)
 
